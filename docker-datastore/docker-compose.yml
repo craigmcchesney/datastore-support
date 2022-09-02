@@ -1,0 +1,45 @@
+# this is version for docker-compose, not any of the service images below!
+version: '3.7'
+
+services:
+
+  mongo_db:
+    image: mongo:4.4.16
+    container_name: datastore-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: datastore
+    ports:
+      - 27017:27017
+    volumes:
+      # mapping for the db setup script
+      - ./seed:/docker-entrypoint-initdb.d
+      # uncomment line below to mount mongodb data to specified host OS directory       
+      - ./mongodata:/data/db
+
+  mongo_express:
+    image: mongo-express:0.54.0
+    container_name: datastore-mongoexpress
+    environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME=default
+      - ME_CONFIG_MONGODB_SERVER=mongo_db
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=root
+    ports:
+      - "8081:8081"
+    restart: always
+    depends_on:
+      - mongo_db
+
+  influxdb:
+    image: influxdb:latest
+    volumes:
+      - ./influxdata:/var/lib/influxdb2:rw
+    ports:
+      - 8086:8086
+    container_name: datastore-influxdb
+
