@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/usr/bin/docker compose -f /home/craigmcc/datastore-support/docker-datastore/docker-compose.yml up -d
