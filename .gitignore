@@ -1,4 +1,5 @@
-docker-datastore/influxdata/*
-docker-datastore/mongodata/*
+docker/influxdata/*
+docker/mongodata/*
+datastore-file-repository/*
 repos/*
 

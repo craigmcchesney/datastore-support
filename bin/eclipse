@@ -1,0 +1,3 @@
+#!/bin/sh
+
+nohup ~/eclipse/jee-2022-06/eclipse/eclipse &> /dev/null &
