@@ -5,3 +5,6 @@
 
 # start envoy proxy (converts http1 to http2 for grpc requests from javascript web application)
 /usr/bin/docker run -d --rm --name envoy -v ~/datastore-support/docker/envoy.yaml:/etc/envoy/envoy.yaml:ro --network=host envoyproxy/envoy:v1.22.0
+
+/usr/bin/docker ps
+

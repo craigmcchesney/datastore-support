@@ -6,3 +6,5 @@
 # stop envoy proxy
 /usr/bin/docker stop envoy
 
+/usr/bin/docker ps
+
