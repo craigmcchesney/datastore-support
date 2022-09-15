@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# start mongodb, mongo express, influxdb
+/usr/bin/docker compose -f ~/datastore-support/docker/docker-compose.yml create
+
+# start envoy proxy (converts http1 to http2 for grpc requests from javascript web application)
+/usr/bin/docker create --name envoy -v ~/datastore-support/docker/envoy.yaml:/etc/envoy/envoy.yaml:ro --network=host envoyproxy/envoy:v1.22.0
+
+/usr/bin/docker compose ls -a
+
+/usr/bin/docker container ls -a
+
