@@ -1,3 +1,12 @@
 #!/bin/sh
 
 ~/bin/protoc -I=/home/osprey/datastore-support/repos/datastore-grpc/src/main/proto --js_out=import_style=commonjs,binary:/home/osprey/datastore-support/protoc-output common.proto query.proto && protoc -I=/home/osprey/datastore-support/repos/datastore-grpc/src/main/proto --grpc-web_out=import_style=commonjs,mode=grpcwebtext:/home/osprey/datastore-support/protoc-output common.proto query.proto && ls -d /home/osprey/datastore-support/protoc-output && ls -lrt /home/osprey/datastore-support/protoc-output
+
+cd /home/osprey/datastore-support/protoc-output && for f in *; do echo; echo "==================="; echo "diff /home/osprey/datastore-support/protoc-output/$f /home/osprey/datastore-web-app/src/domain/grpc-client/grpc-proto/$f"; echo "==================="; echo; diff /home/osprey/datastore-support/protoc-output/$f /home/osprey/datastore-web-app/src/domain/grpc-client/grpc-proto/$f ; done
+
+echo
+echo "==================="
+echo "if there are diffs, copy new files to web app directory:"
+echo "==================="
+echo "cp /home/osprey/datastore-support/protoc-output/*.js /home/osprey/datastore-web-app/src/domain/grpc-client/grpc-proto/"
+
