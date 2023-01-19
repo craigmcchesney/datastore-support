@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# start datastore-service application (query api service)
+cd ~/datastore-support/repos/datastore-service
+mvn spring-boot:run -Dspring-boot.run.arguments="--datastore.server.repository.location=/home/osprey/datastore-support/datastore-file-repository --datastore.service.influxdb.token=kBhCr542FKn8mQcL9JhUtqqs8mTdSY7mEydJKhtUvvV938q8zScCxjYiJLKXN8aLlKQZ0Bg3kBBGkKznH2d5Fg== --spring.data.mongodb.username=datastore --spring.data.mongodb.password=datastore" & echo $! > /tmp/datastore-service.pid &
+
