@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Called from ~/.bashrc via "source ~/datastore-support/env/datastore-env", sets up environment environment variables for customization etc.
+
+source ~/datastore-deployment/custom/env/datastore-env-passwd
+source ~/datastore-deployment/custom/env/datastore-env-vars
+
+export DIR_BIN=~/datastore-support/bin
+alias bin="cd $DIR_BIN"
+export PATH=$PATH:$DIR_BIN
+
