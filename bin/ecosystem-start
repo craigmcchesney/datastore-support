@@ -1,0 +1,36 @@
+#! /bin/sh
+
+echo "Starting datastore ecosystem"
+
+echo
+echo "======================================"
+echo "Starting support services"
+echo "======================================"
+echo
+~/datastore-support/bin/support-services-start
+
+if [[ -v START_DATASTORE_SVC ]]; then
+    echo
+    echo "======================================"
+    echo "Starting datastore-service java application (query api service)"
+    echo "======================================"
+    echo
+    ~/datastore-support/bin/datastore-query-svc-start
+else
+    echo "======================================"
+    echo "Not starting datastore-service java application (query api service)"
+    echo "======================================"
+    echo
+fi
+
+if [[ -v START_WEB_APP ]]; then
+    echo "======================================"
+    echo "TODO: start datastore-app-server (web app)"
+    echo "======================================"
+    echo
+else
+    echo "======================================"
+    echo "Not starting datastore-app-server (web app)"
+    echo "======================================"
+    echo
+fi

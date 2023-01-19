@@ -1,0 +1,2 @@
+# start datastore ecosystem (sleep 30 seconds to let support services start up)
+@reboot sleep 30 && ~/datastore-support/bin/ecosystem-start-dev-web-app > /tmp/ecosystem-start.out 2>&1

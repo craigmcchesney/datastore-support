@@ -1,6 +1,22 @@
 #!/bin/sh
 
-# start datastore-service application (query api service)
-cd ~/datastore-support/repos/datastore-service
-mvn spring-boot:run -Dspring-boot.run.arguments="--datastore.server.repository.location=$DATASTORE_SERVER_REPOSITORY_LOCATION --datastore.service.influxdb.token=$DATASTORE_SERVICE_INFLUXDB_TOKEN --spring.data.mongodb.username=$SPRING_DATA_MONGODB_USERNAME --spring.data.mongodb.password=$SPRING_DATA_MONGODB_PASSWORD" & echo $! > /tmp/datastore-service.pid &
+source ~/datastore-support/env/datastore-env
 
+MVN_BIN=~/datastore-deployment/bin/mvn
+APP_DIR=~/datastore-support/repos/datastore-service
+APP_CMD_ARGS="--datastore.server.repository.location=$DATASTORE_SERVER_REPOSITORY_LOCATION --datastore.service.influxdb.token=$DATASTORE_SERVICE_INFLUXDB_TOKEN --spring.data.mongodb.username=$SPRING_DATA_MONGODB_USERNAME --spring.data.mongodb.password=$SPRING_DATA_MONGODB_PASSWORD"
+APP_CMD="$MVN_BIN spring-boot:run -Dspring-boot.run.arguments=\"$APP_CMD_ARGS\" &"
+
+echo "starting datastore-service using cmd:"
+echo "$APP_CMD"
+
+# check for link to maven
+test -f $MVN_BIN || echo "$MVN_BIN not found"
+
+# change to datastore-service directory
+cd $APP_DIR || echo "$APP_DIR not found"
+
+# start datastore-service application (query api service)
+eval "$APP_CMD" || "failed to start datastore-service using command: $APP_CMD"
+
+echo $! > /tmp/datastore-service.pid &

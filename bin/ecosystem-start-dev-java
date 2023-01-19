@@ -1,0 +1,6 @@
+#! /bin/sh
+START_DATASTORE_SVC=
+export START_DATASTORE_SVC
+START_WEB_APP=
+export START_WEB_APP
+~/datastore-support/bin/ecosystem-start
