@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/env bash
 
 echo "Stopping datastore ecosystem"
 
@@ -13,11 +13,11 @@ echo "======================================"
 echo "Stopping datastore-service java application (query api service)"
 echo "======================================"
 echo
-~/datastore-support/bin/datastore-query-svc-stop
+~/datastore/datastore-support/bin/datastore-query-svc-stop
 
 echo "======================================"
 echo "Stopping support services"
 echo "======================================"
 echo
-~/datastore-support/bin/support-services-stop
+~/datastore/datastore-support/bin/support-services-stop
 

@@ -1,27 +1,25 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-echo "========== docker compose -f ~/datastore-support/docker/docker-compose.yml rm =========="
-# start mongodb, mongo express, influxdb
-/usr/bin/docker compose -f ~/datastore-support/docker/docker-compose.yml rm
+echo "========== docker compose -f ~/datastore/datastore-support/docker/docker-compose.yml rm =========="
+docker compose -f ~/datastore/datastore-support/docker/docker-compose.yml rm
 
 echo ""
 echo "========== docker container rm envoy =========="
-# start envoy proxy (converts http1 to http2 for grpc requests from javascript web application)
-/usr/bin/docker container rm envoy
+docker container rm envoy
 
 echo ""
 echo "========== docker compose ls -a =========="
-/usr/bin/docker compose ls -a
+docker compose ls -a
 
 echo ""
 echo "========== docker container ls -a =========="
-/usr/bin/docker container ls -a
+docker container ls -a
 
 echo ""
-echo "========== sudo rm -rf ~/datastore-support/docker/influxdata/* =========="
-ls ~/datastore-support/docker/influxdata && sudo rm -rf ~/datastore-support/docker/influxdata/*
+echo "========== sudo rm -rf ~/datastore/datastore-support/docker/influxdata/* =========="
+ls ~/datastore/datastore-support/docker/influxdata && sudo rm -rf ~/datastore/datastore-support/docker/influxdata/*
 
 echo ""
-echo "========== sudo rm -rf ~/datastore-support/docker/mongodata/* =========="
-ls ~/datastore-support/docker/mongodata && sudo rm -rf ~/datastore-support/docker/mongodata/*
+echo "========== sudo rm -rf ~/datastore/datastore-support/docker/mongodata/* =========="
+ls ~/datastore/datastore-support/docker/mongodata && sudo rm -rf ~/datastore/datastore-support/docker/mongodata/*
 

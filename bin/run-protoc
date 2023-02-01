@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ~/bin/protoc -I=/home/osprey/datastore-support/repos/datastore-grpc/src/main/proto --js_out=import_style=commonjs,binary:/home/osprey/datastore-support/protoc-output common.proto query.proto && protoc -I=/home/osprey/datastore-support/repos/datastore-grpc/src/main/proto --grpc-web_out=import_style=commonjs,mode=grpcwebtext:/home/osprey/datastore-support/protoc-output common.proto query.proto && ls -d /home/osprey/datastore-support/protoc-output && ls -lrt /home/osprey/datastore-support/protoc-output
 

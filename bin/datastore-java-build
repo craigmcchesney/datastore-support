@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+source ~/datastore/datastore-support/env/datastore-env
+
+MVN_BIN=~/datastore/datastore-deployment/bin/mvn
+GRPC_DIR=~/datastore/datastore-java/datastore-grpc
+APP_DIR=~/datastore/datastore-java/datastore-service
+MVN_CMD="$MVN_BIN install"
+
+# check java home
+test -v JAVA_HOME || { echo "JAVA_HOME variable is not set"; exit 1; }
+
+# check maven home
+test -v M2_HOME || { echo "M2_HOME variable is not set"; exit 1; }
+
+# check for link to maven
+test -f $MVN_BIN || { echo "$MVN_BIN not found"; exit 1; }
+
+# change to datastore-grpc directory
+cd $GRPC_DIR || { echo "$GRPC_DIR not found"; exit 1; }
+
+# run maven install
+eval "$MVN_CMD" || { echo "mvn install failed for $GRPC_DIR"; exit 1; }
+
+# change to datastore-service directory
+cd $APP_DIR || { echo "$APP_DIR not found"; exit 1; }
+
+# run maven install
+eval "$MVN_CMD" || { echo "mvn install failed for $APP_DIR"; exit 1; }
+

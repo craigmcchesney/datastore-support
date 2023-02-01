@@ -1,4 +1,14 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# stop datastore-service using pid in /tmp/datastore-service.pid
-kill $(cat /tmp/datastore-service.pid)
+LOCKFILE=~/datastore/datastore-deployment/var/lock/datastore-service.pid
+
+if [ ! -f "$LOCKFILE" ]; then
+    echo "$LOCKFILE does not exist, don't know process id to kill"
+    exit 1
+fi
+
+# stop datastore-service using pid in ~/datastore/datastore-deployment/var/lock/datastore-service.pid
+kill $(cat "$LOCKFILE")
+
+rm "$LOCKFILE"
+

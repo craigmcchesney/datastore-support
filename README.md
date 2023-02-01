@@ -36,15 +36,15 @@ The env directory includes scripts for setting up the Linux environment for the 
 
 ### create branch of datastore-deployment repo and clone to home directory
 
-This repo is intended to be used with the datastore-deployment repo.  A new branch of that repo should be created for the new deployment and cloned to ~/datastore-deployment in the home directory of the Linux user that will run the service ecosystem.  The config and crontab files should be tailored as appropriate for the deployment including influxdb/mongodb authentication details, which services to start (e.g., production vs. development), etc.
+This repo is intended to be used with the datastore-deployment repo.  A new branch of that repo should be created for the new deployment and cloned to ~/datastore/datastore-deployment in the home directory of the Linux user that will run the service ecosystem.  The config and crontab files should be tailored as appropriate for the deployment including influxdb/mongodb authentication details, which services to start (e.g., production vs. development), etc.
 
 ### clone datastore-support repo to home directory
 
-The datastore-support repo should be cloned to ~/datastore-support.
+The datastore-support repo should be cloned to ~/datastore/datastore-support.
 
 ### create docker containers for support services
 
-The ~/datastore-support/bin/support-services-create script is used to create docker containers for influxdb, mongodb, and envoy proxy.
+The ~/datastore/datastore-support/bin/support-services-create script is used to create docker containers for influxdb, mongodb, and envoy proxy.
 
 ### use influxdb portal to create "bucket"
 
@@ -58,19 +58,19 @@ The [mongo express web portal](http://localhost:8081/) can be used to navigate t
 
 ### use appropriate ecosystem-start variant to bring up the system
 
-The ~/datastore-support/bin/ecosystem-start script is used to bring up a full ecosystem with support services, Java servers, and JavaScript server/web applications.  The ecosystem-start-dev-java and ecosystem-start-dev-web-app scripts can be used to bring up services for a development system.
+The ~/datastore/datastore-support/bin/ecosystem-start script is used to bring up a full ecosystem with support services, Java servers, and JavaScript server/web applications.  The ecosystem-start-dev-java and ecosystem-start-dev-web-app scripts can be used to bring up services for a development system.
 
 ### add the ecosystem-start script invocation to crontab
 
-The crontab templates in ~/datastore-support/env can be used to create a crontab for the user that runs the ecosystem.  Choose the template for the appropriate ecosystem-start script variant from above.  The crontab includes a "reboot" entry that will start the ecosystem when the system/VM is booted.
+The crontab templates in ~/datastore/datastore-support/env can be used to create a crontab for the user that runs the ecosystem.  Choose the template for the appropriate ecosystem-start script variant from above.  The crontab includes a "reboot" entry that will start the ecosystem when the system/VM is booted.
 
 ### java development
 
-For Java development, use the ~/datastore-support/bin/eclipse script to run eclipse.  The datastore repos are meant to be installed to and loaded from ~/datastore-support/repos.
+For Java development, use the ~/datastore/datastore-support/bin/eclipse script to run eclipse.  The datastore repos are meant to be installed to and loaded from ~/datastore/datastore-support/repos.
 
 ### javascript development
 
-For Javascript development, use the ~/datastore-support/bin/webstorm script to run webstorm.  The React web application repo is cloned to ~/datastore-web-app.  The Node.js server is cloned to ~/datastore-server-app, and includes a symbolic link called "client" which points to the datastore-web-app directory.  For now there are 2 independent repos, one for the client and one for the server.  At some point, I might merge this to use a single repo for both, or to use a git submodule for the client within the server directory.
+For Javascript development, use the ~/datastore/datastore-support/bin/webstorm script to run webstorm.  The React web application repo is cloned to ~/datastore/datastore-web-app.  The Node.js server is cloned to ~/datastore/datastore-server-app, and includes a symbolic link called "client" which points to the datastore-web-app directory.  For now there are 2 independent repos, one for the client and one for the server.  At some point, I might merge this to use a single repo for both, or to use a git submodule for the client within the server directory.
 
 ### web application
 

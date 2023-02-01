@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+echo
+echo "======================================"
+echo "support services status"
+echo "======================================"
+echo
+~/datastore/datastore-support/bin/support-services-status
+
+echo
+echo "======================================"
+echo "datastore java query service status"
+echo "======================================"
+echo
+~/datastore/datastore-support/bin/datastore-query-svc-status

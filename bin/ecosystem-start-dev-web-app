@@ -1,4 +1,3 @@
-#! /bin/sh
-START_DATASTORE_SVC=
-export START_DATASTORE_SVC
-~/datastore-support/bin/ecosystem-start
+#!/usr/bin/env bash
+export START_DATASTORE_SVC=
+~/datastore/datastore-support/bin/ecosystem-start

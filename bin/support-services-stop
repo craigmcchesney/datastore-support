@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # stop mongodb, mongo express, influxdb
-/usr/bin/docker compose -f ~/datastore-support/docker/docker-compose.yml stop
+docker compose -f ~/datastore/datastore-support/docker/docker-compose.yml stop
 
 # stop envoy proxy
-/usr/bin/docker stop envoy
+docker stop envoy
 
-/usr/bin/docker ps
+docker ps
 

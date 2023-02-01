@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+source ~/datastore/datastore-support/env/datastore-env
+
+LOCKFILE=~/datastore/datastore-deployment/var/lock/datastore-service.pid
+
+if [ ! -f "$LOCKFILE" ]; then
+    echo "$LOCKFILE doesn't exist, query service doesn't appear to be running"
+    exit 1
+fi
+
+ps -p `cat $LOCKFILE` -o pid,vsz=MEMORY -o comm,args=ARGS
