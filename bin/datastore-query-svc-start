@@ -10,10 +10,10 @@ APP_CMD_ARGS="--datastore.server.repository.location=$DATASTORE_SERVER_REPOSITOR
 APP_CMD="$MVN_BIN spring-boot:run -Dspring-boot.run.arguments=\"$APP_CMD_ARGS\" >& $LOGFILE & disown"
 
 # check java home
-test -v JAVA_HOME || { echo "JAVA_HOME variable is not set"; exit 1; }
+test -z $JAVA_HOME && { echo "JAVA_HOME variable is not set"; exit 1; }
 
 # check maven home
-test -v M2_HOME || { echo "M2_HOME variable is not set"; exit 1; }
+test -z $M2_HOME && { echo "M2_HOME variable is not set"; exit 1; }
 
 if [ -f "$LOCKFILE" ]; then
     echo "$LOCKFILE exists, query service appears to be running already"

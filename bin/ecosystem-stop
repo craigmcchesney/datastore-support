@@ -2,12 +2,6 @@
 
 echo "Stopping datastore ecosystem"
 
-if [[ -v ECOSYSTEM_DEV ]]; then
-	echo "ECOSYSTEM_DEV variable is set, not stopping web app"
-else
-	echo "TODO: stop the datastore-app-server"
-fi
-
 echo
 echo "======================================"
 echo "Stopping datastore-service java application (query api service)"
