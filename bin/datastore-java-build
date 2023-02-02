@@ -8,10 +8,10 @@ APP_DIR=~/datastore/datastore-java/datastore-service
 MVN_CMD="$MVN_BIN install"
 
 # check java home
-test -v JAVA_HOME || { echo "JAVA_HOME variable is not set"; exit 1; }
+test -z $JAVA_HOME && { echo "JAVA_HOME variable is not set"; exit 1; }
 
 # check maven home
-test -v M2_HOME || { echo "M2_HOME variable is not set"; exit 1; }
+test -z $M2_HOME && { echo "M2_HOME variable is not set"; exit 1; }
 
 # check for link to maven
 test -f $MVN_BIN || { echo "$MVN_BIN not found"; exit 1; }
