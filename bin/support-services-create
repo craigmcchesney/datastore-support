@@ -3,8 +3,10 @@
 docker compose -f ~/datastore/datastore-support/docker/docker-compose.yml create
 
 if [[ $OSTYPE == 'darwin'* ]]; then
+    echo "creating envoy docker container for mac os: $OSTYPE"
     docker create --name envoy -v ~/datastore/datastore-support/docker/envoy.mac.yaml:/etc/envoy/envoy.yaml:ro -p 8080:8080 -p 9901:9901 envoyproxy/envoy:v1.22.0
 else
+    echo "creating envoy docker container for non-mac os: $OSTYPE"
     docker create --name envoy -v ~/datastore/datastore-support/docker/envoy.yaml:/etc/envoy/envoy.yaml:ro --network=host envoyproxy/envoy:v1.22.0
 fi
 
