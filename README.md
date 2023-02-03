@@ -148,7 +148,7 @@ datastore-env
 
 The env directory includes scripts for setting up the Linux environment for the user running the ecosystem.  The "datastore-env" script should be called by the Linux user's .bashrc script, and adds environment variables for use by the datastore-support repo's scripts (in bin directory).  It also includes template crontab files for different kinds of deployments.  The crontab.datastore-support template starts the full ecosystem including support services, Java server applications, and Javascript server/web applications.  There are also crontab templates for development VMs to be used for either Java or JavaScript development that only start the support services and whatever other parts of the ecosystem are needed for development.
 
-## using the datastore-support repo tools
+## creating a new deployment of the datastore ecosystem
 
 Below are the recommended steps for creating a new deployment of the datastore ecosystem using the tools provided in this datastore-support repo.  You might also consider copying a VirtualBox VM set up for Java and JavaScript development, or installing and tailoring a zipfile copy of the ~/datastore directory, discussed in more detail below.  Both are a good way to get a jumpstart over installing from scratch.
 
