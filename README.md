@@ -54,35 +54,43 @@ Branch of [datastore-deployment repo](https://github.com/craigmcchesney/datastor
 
 Clones of the various datastore Java application repos, including:
 
----- datastore
----- datastore-client-lib
----- datastore-client-spring-boot-starter
----- datastore-grpc
----- datastore-provider-lib
----- datastore-provider-spring-boot-starter
----- datastore-service
----- mpex-sdp
+* [datastore](https://github.com/osprey-dcs/datastore)
+* [datastore-client-lib](https://github.com/osprey-dcs/datastore-client-lib)
+* [datastore-client-spring-boot-starter](https://github.com/osprey-dcs/datastore-client-spring-boot-starter)
+* [datastore-grpc](https://github.com/osprey-dcs/datastore-grpc)
+* [datastore-provider-lib](https://github.com/osprey-dcs/datastore-provider-lib)
+* [datastore-provider-spring-boot-starter](https://github.com/osprey-dcs/datastore-provider-spring-boot-starter)
+* [datastore-service](https://github.com/osprey-dcs/datastore-service)
+* [mpex-sdp](https://github.com/osprey-dcs/mpex-sdp)
 
-datastore-javascript:
----- datastore-server-app
----- datastore-web-app
+#### datastore-javascript
 
-datastore-support:
----- bin
----- datastore-file-reository
----- docker
----- env
----- protoc-output
+Clones of the datastore Javascript application repos, including: 
 
-### create branch of datastore-deployment repo and clone to home directory
+* [datastore-server-app](https://github.com/craigmcchesney/datastore-server-app)
+* [datastore-web-app](https://github.com/craigmcchesney/datastore-web-app)
+
+#### datastore-support
+
+Clone of [this repo](https://github.com/craigmcchesney/datastore-support).  Subdirectories are described in the section above.
+
+### create branch of datastore-deployment repo and clone to root datastore directory
 
 This repo is intended to be used with the datastore-deployment repo.  A new branch of that repo should be created for the new deployment and cloned to ~/datastore/datastore-deployment in the home directory of the Linux user that will run the service ecosystem.  The config and crontab files should be tailored as appropriate for the deployment including influxdb/mongodb authentication details, which services to start (e.g., production vs. development), etc.
 
 Note that it might be easiest to start with a copy of the datastore-deployment directory from an existing deployment, tailor/customize the copied files, and create a new git branch for the new deployment.
 
-### clone datastore-support repo to home directory
+### clone datastore-support repo to root datastore directory
 
 The datastore-support repo should be cloned to ~/datastore/datastore-support.
+
+### clone datastore java repos to ~/datastore/datastore-java directory
+
+The datastore Java repos are listed above.  They should be cloned to the datastore-java directory.
+
+### clone datastore javascript repos to ~/datastore/datastore-javascript directory
+
+If it is desired to use the web application and node corresponding node server, those repos should be cloned to the datastore-javascript directory.
 
 ### create docker containers for support services
 
@@ -100,7 +108,7 @@ The [mongo express web portal](http://localhost:8081/) can be used to navigate t
 
 ### use appropriate ecosystem-start variant to bring up the system
 
-The ~/datastore/datastore-support/bin/ecosystem-start script is used to bring up a full ecosystem with support services, Java servers, and JavaScript server/web applications.  The ecosystem-start-dev-java and ecosystem-start-dev-web-app scripts can be used to bring up services for a development system.
+The ~/datastore/datastore-support/bin/ecosystem-start-full script is used to bring up a full ecosystem with support services, Java servers, and JavaScript server/web applications.  The ecosystem-start-dev-java and ecosystem-start-dev-web-app scripts can be used to bring up services for a development system.
 
 ### add the ecosystem-start script invocation to crontab
 
