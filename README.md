@@ -26,7 +26,9 @@ The bin directory includes shell scripts for managing individual services, start
 
 ### docker
 
-The docker directory includes configuration files for creating [docker containers](https://www.docker.com/resources/what-container/) for the support services.  A [docker-compose](https://docs.docker.com/compose/) configuration (docker-compose.yml) is provided for running influxdb, mongodb, and mongo express (web portal for MongoDB).  A separate docker configuration (envoy.yaml)  is included for creating a container running the envoy proxy.
+The docker directory includes configuration files for creating [docker containers](https://www.docker.com/resources/what-container/) for the support services.  A [docker-compose](https://docs.docker.com/compose/) configuration (docker-compose.yml) is provided for running influxdb, mongodb, and mongo express (web portal for MongoDB).  
+
+A separate docker configuration (envoy.yaml)  is included for creating a container running the envoy proxy.  Note that there is now a MacOS specified file envoy.mac.yaml (that I think is also supposed to be used for Windows).  See the [grpc-web example](https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld) for more details about docker container configuration and creation and the differences for Mac/Windows.
 
 ### env
 
@@ -34,9 +36,49 @@ The env directory includes scripts for setting up the Linux environment for the 
 
 ## using the datastore-support repo tools
 
+### create root directory ~/datastore
+
+The scripts assume that there is a directory "~/datastore" in the user's home directory that contains all the other datastore repos in subdirectories.  This is so things are a bit more contained than having several subdirectories located in the home directory, and makes it easier to zip up an installation to get a jumpstart on another deployment.  I might make a new datastore-ecosystem repo that contains all the other repos as git submodules.  Right now it's easier to just use links or nested git repos since everything is still under development.  Once we get to official versioned releases, that might change.
+
+Here is the assumed directory structure beneath ~/datastore, with a brief description of each directory:
+
+#### datastore-deployment
+
+Branch of [datastore-deployment repo](https://github.com/craigmcchesney/datastore-deployment), subdirectories include:
+
+* bin: symbolic links to system executables with variable locations on hosts
+* custom: customizations including environment variables and cron file etc
+* var: ignored by version control, includes subdirectories for lock and log files
+
+#### datastore-java
+
+Clones of the various datastore Java application repos, including:
+
+---- datastore
+---- datastore-client-lib
+---- datastore-client-spring-boot-starter
+---- datastore-grpc
+---- datastore-provider-lib
+---- datastore-provider-spring-boot-starter
+---- datastore-service
+---- mpex-sdp
+
+datastore-javascript:
+---- datastore-server-app
+---- datastore-web-app
+
+datastore-support:
+---- bin
+---- datastore-file-reository
+---- docker
+---- env
+---- protoc-output
+
 ### create branch of datastore-deployment repo and clone to home directory
 
 This repo is intended to be used with the datastore-deployment repo.  A new branch of that repo should be created for the new deployment and cloned to ~/datastore/datastore-deployment in the home directory of the Linux user that will run the service ecosystem.  The config and crontab files should be tailored as appropriate for the deployment including influxdb/mongodb authentication details, which services to start (e.g., production vs. development), etc.
+
+Note that it might be easiest to start with a copy of the datastore-deployment directory from an existing deployment, tailor/customize the copied files, and create a new git branch for the new deployment.
 
 ### clone datastore-support repo to home directory
 
