@@ -84,60 +84,11 @@ Clones of the datastore Javascript application repos, including:
 
 Clone of [this repo](https://github.com/craigmcchesney/datastore-support).  Because they are the focus of this repo, a more detailed description of each subdirectory is given below.
 
-<pre>
-bin:
-datastore-java-build
-datastore-query-svc-start
-datastore-query-svc-status
-datastore-query-svc-stop
-eclipse
-ecosystem-start-dev-java
-ecosystem-start-dev-web-app
-ecosystem-start-full
-ecosystem-start-specified-services
-ecosystem-status
-ecosystem-stop
-os-release
-run-protoc
-support-services-create
-support-services-rm
-support-services-start
-support-services-status
-support-services-stop
-webstorm
-
-datastore-file-reository:
-
-docker:
-docker-compose.yml
-envoy.mac.yaml
-envoy.yaml
-influxdata
-mongodata
-seed
-
-env:
-crontab.datastore-support
-crontab.datastore-support-dev-java
-crontab.datastore-support-dev-web-app
-datastore-env
-
-protoc-output:
-common_pb.js
-query_grpc_web_pb.js
-query_pb.js
-</pre>
-
 ##### bin
 
 The bin directory includes shell scripts for managing individual services, starting and stopping the entire service ecosystem, creating/removing/starting/stopping docker containers, running the gRPC protoc compiler (for [generating JavaScript stubs](https://github.com/grpc/grpc-web) from the Java server application gRPC API [protocol buffer](https://developers.google.com/protocol-buffers/docs/overview) files), and starting the [eclipse](https://www.eclipse.org/ide/) (Java) and [webstorm](https://www.jetbrains.com/webstorm/) (JavaSecript) development environments.
 
 The scripts in the bin directory can be grouped into categories for further discussion:
-
-eclipse
-os-release
-run-protoc
-webstorm
 
 ###### building datastore Java
 
@@ -150,7 +101,11 @@ webstorm
 
 ###### managing docker-based support services
 
-t
+* support-services-create
+* support-services-rm
+* support-services-start
+* support-services-status
+* support-services-stop
 
 ###### managing ecosystem services
 
@@ -161,15 +116,35 @@ t
 * ecosystem-status
 * ecosystem-stop
 
+###### development tools
 
+* eclipse
+* run-protoc
+* webstorm
 
 ##### docker
+<pre>
+docker:
+docker-compose.yml
+envoy.mac.yaml
+envoy.yaml
+influxdata
+mongodata
+seed
+</pre>
 
 The docker directory includes configuration files for creating [docker containers](https://www.docker.com/resources/what-container/) for the support services.  A [docker-compose](https://docs.docker.com/compose/) configuration (docker-compose.yml) is provided for running influxdb, mongodb, and mongo express (web portal for MongoDB).  
 
 A separate docker configuration (envoy.yaml)  is included for creating a container running the envoy proxy.  Note that there is now a MacOS specified file envoy.mac.yaml (that I think is also supposed to be used for Windows).  See the [grpc-web example](https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld) for more details about docker container configuration and creation and the differences for Mac/Windows.
 
 ##### env
+
+<pre>
+crontab.datastore-support
+crontab.datastore-support-dev-java
+crontab.datastore-support-dev-web-app
+datastore-env
+</pre>
 
 The env directory includes scripts for setting up the Linux environment for the user running the ecosystem.  The "datastore-env" script should be called by the Linux user's .bashrc script, and adds environment variables for use by the datastore-support repo's scripts (in bin directory).  It also includes template crontab files for different kinds of deployments.  The crontab.datastore-support template starts the full ecosystem including support services, Java server applications, and Javascript server/web applications.  There are also crontab templates for development VMs to be used for either Java or JavaScript development that only start the support services and whatever other parts of the ecosystem are needed for development.
 
