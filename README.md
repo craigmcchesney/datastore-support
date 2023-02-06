@@ -151,7 +151,7 @@ The env directory includes scripts for setting up the Linux environment for the 
 
 Below are the recommended steps for creating a new deployment of the datastore ecosystem using the tools provided in this datastore-support repo.  
 
-You might also consider copying a VirtualBox VM set up for Java and JavaScript development, or installing and tailoring a zipfile copy of the ~/datastore directory, discussed in more detail below.  Both are a good way to get a jumpstart over installing from scratch.
+You might also consider [copying a VirtualBox VM](https://github.com/craigmcchesney/datastore-support/files/10511387/README-using-datastore-dev-VM.pdf) set up for Java and JavaScript development, or [installing and tailoring a zipfile](https://github.com/craigmcchesney/datastore-support/wiki/installing-datastore-ecosystem-from-zipfile) copy of the ~/datastore directory, discussed in more detail below.  Both are a good way to get a jumpstart over installing from scratch.
 
 ### create root directory ~/datastore
 
