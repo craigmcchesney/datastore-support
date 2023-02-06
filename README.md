@@ -92,7 +92,7 @@ The scripts in the bin directory can be grouped into categories for further disc
 
 ###### building datastore Java
 
-* datastore-java-build
+* datastore-java-build - Builds datastore Java projects using Maven.  Currently includes only datastore-grpc and datastore-service to support running the query service.
 
 ###### managing datastore Java applications
 * datastore-query-svc-start
