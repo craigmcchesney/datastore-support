@@ -92,13 +92,13 @@ The scripts in the bin directory can be grouped into categories for further disc
 
 ###### building datastore Java
 
-Builds datastore Java projects using Maven.  Currently includes only datastore-grpc and datastore-service to support running the query service.
+Builds datastore Java projects using Maven.  Currently includes only [datastore-grpc](https://github.com/osprey-dcs/datastore-grpc) and [datastore-service](https://github.com/osprey-dcs/datastore-service) to support running the query service.
 
 * datastore-java-build
 
 ###### managing datastore Java applications
 
-These scripts are used for starting, stopping, and checking the status of the datastore Java query service.
+These scripts are used for starting, stopping, and checking the status of the datastore Java query service, [datastore-service](https://github.com/osprey-dcs/datastore-service).
 
 * datastore-query-svc-start
 * datastore-query-svc-status
@@ -134,28 +134,16 @@ There are scripts to support development, including convenience scripts for star
 * webstorm
 
 ##### docker
-<pre>
-docker:
-docker-compose.yml
-envoy.mac.yaml
-envoy.yaml
-influxdata
-mongodata
-seed
-</pre>
 
 The docker directory includes configuration files for creating [docker containers](https://www.docker.com/resources/what-container/) for the support services.  A [docker-compose](https://docs.docker.com/compose/) configuration (docker-compose.yml) is provided for running influxdb, mongodb, and mongo express (web portal for MongoDB).  
 
 A separate docker configuration (envoy.yaml)  is included for creating a container running the envoy proxy.  Note that there is now a MacOS specified file envoy.mac.yaml (that I think is also supposed to be used for Windows).  See the [grpc-web example](https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld) for more details about docker container configuration and creation and the differences for Mac/Windows.
 
-##### env
+The "seed" subdirectory is used when creating the mongodb container to create.  It contains mongo shell scripts to create and initialize the "datastore" user in the database.
 
-<pre>
-crontab.datastore-support
-crontab.datastore-support-dev-java
-crontab.datastore-support-dev-web-app
-datastore-env
-</pre>
+This directory also includes OS directories mounted to the InfluxDB and MongodB containers for accessing database files (influxdata and mongodata).  It should really be moved to the datastore-deployment/var directory since it is variable deployment-specific content.
+
+##### env
 
 The env directory includes scripts for setting up the Linux environment for the user running the ecosystem.  The "datastore-env" script should be called by the Linux user's .bashrc script, and adds environment variables for use by the datastore-support repo's scripts (in bin directory).  It also includes template crontab files for different kinds of deployments.  The crontab.datastore-support template starts the full ecosystem including support services, Java server applications, and Javascript server/web applications.  There are also crontab templates for development VMs to be used for either Java or JavaScript development that only start the support services and whatever other parts of the ecosystem are needed for development.
 
@@ -164,6 +152,8 @@ The env directory includes scripts for setting up the Linux environment for the 
 Below are the recommended steps for creating a new deployment of the datastore ecosystem using the tools provided in this datastore-support repo.  You might also consider copying a VirtualBox VM set up for Java and JavaScript development, or installing and tailoring a zipfile copy of the ~/datastore directory, discussed in more detail below.  Both are a good way to get a jumpstart over installing from scratch.
 
 ### create root directory ~/datastore
+
+This will be the root directory for the entire datastore ecosystem installation.
 
 ### create branch of datastore-deployment repo and clone to root datastore directory
 
