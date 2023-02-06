@@ -92,14 +92,21 @@ The scripts in the bin directory can be grouped into categories for further disc
 
 ###### building datastore Java
 
-* datastore-java-build - Builds datastore Java projects using Maven.  Currently includes only datastore-grpc and datastore-service to support running the query service.
+Builds datastore Java projects using Maven.  Currently includes only datastore-grpc and datastore-service to support running the query service.
+
+* datastore-java-build
 
 ###### managing datastore Java applications
+
+These scripts are used for starting, stopping, and checking the status of the datastore Java query service.
+
 * datastore-query-svc-start
 * datastore-query-svc-status
 * datastore-query-svc-stop
 
 ###### managing docker-based support services
+
+These scripts manage the docker containers for the ecosystem support services, InfluxDB, MongoDB, and Envoy proxy.  There are scripts to create and remove the containers, as well as start, stop, and check the status of the containers.  Note that the support-services-rm script not only removes the containers, but also clears the mounted OS directories meaning that all contents of both databases are completely cleared.  Use with caution!  You can use "docker rm" to remove the containers directly but leave the data intact, and support-services-create will create new containers with the existing data.
 
 * support-services-create
 * support-services-rm
@@ -109,6 +116,8 @@ The scripts in the bin directory can be grouped into categories for further disc
 
 ###### managing ecosystem services
 
+These scripts manage the entire ecosystem of services and applications, with variations for full production/demo/test deployments as well as development.  The ecosystem-start-specified-services script is used by the other start scripts to start the services specified by environment variables set in those scripts.  There are also scripts to stop the ecosystem and check status.
+
 * ecosystem-start-dev-java
 * ecosystem-start-dev-web-app
 * ecosystem-start-full
@@ -117,6 +126,8 @@ The scripts in the bin directory can be grouped into categories for further disc
 * ecosystem-stop
 
 ###### development tools
+
+There are scripts to support development, including convenience scripts for starting the Eclipse and Webstorm IDEs.  The run-protoc script is used to generate Javascript stubs from the protocol buffer files included in the datastore-grpc repo that define the GRPC service APIs.
 
 * eclipse
 * run-protoc
