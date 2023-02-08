@@ -10,6 +10,7 @@ echo
 ~/datastore/datastore-support/bin/support-services-start
 
 if [[ -z $START_DATASTORE_SVC ]]; then
+    echo
     echo "======================================"
     echo "Not starting datastore-service java application (query api service)"
     echo "======================================"
@@ -24,11 +25,13 @@ else
 fi
 
 if [[ -z $START_WEB_APP ]]; then
+    echo
     echo "======================================"
     echo "Not starting datastore-app-server (web app)"
     echo "======================================"
     echo
 else
+    echo
     echo "======================================"
     echo "Starting javascript server application"
     echo "======================================"

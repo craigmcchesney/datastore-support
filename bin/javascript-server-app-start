@@ -21,9 +21,7 @@ if [ -f "$LOCKFILE" ]; then
 fi
 
 echo
-echo "============================================================================================================"
 echo "running: $START_CMD in directory: $SERVER_APP_DIR"
-echo "============================================================================================================"
 echo
 
 # change to server app directory
@@ -33,3 +31,7 @@ cd $SERVER_APP_DIR || { echo "$SERVER_APP_DIR not found"; exit 1; }
 eval "$START_CMD" || { echo "failed to start service using command: $START_CMD"; exit 1; }
 
 echo $! > "$LOCKFILE" &
+PID=`cat "$LOCKFILE"`
+echo "created $LOCKFILE with process id: $PID"
+echo "logfile: $LOGFILE"
+

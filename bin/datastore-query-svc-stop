@@ -8,7 +8,10 @@ if [ ! -f "$LOCKFILE" ]; then
 fi
 
 # stop datastore-service using pid in ~/datastore/datastore-deployment/var/lock/datastore-service.pid
-kill $(cat "$LOCKFILE")
+PID=`cat "$LOCKFILE"`
+echo "killing process id: $PID"
+kill $PID || { echo "failed to kill process id: $PID"; exit 1; }
 
-rm "$LOCKFILE"
+echo "removing lock file: $LOCKFILE"
+rm "$LOCKFILE" || { echo "failed to remove: $LOCKFILE"; exit 1; }
 

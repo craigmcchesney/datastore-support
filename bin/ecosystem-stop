@@ -16,6 +16,7 @@ echo "======================================"
 echo
 ~/datastore/datastore-support/bin/datastore-query-svc-stop
 
+echo
 echo "======================================"
 echo "Stopping support services"
 echo "======================================"
