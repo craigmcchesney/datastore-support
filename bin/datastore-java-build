@@ -19,11 +19,23 @@ test -f $MVN_BIN || { echo "$MVN_BIN not found"; exit 1; }
 # change to datastore-grpc directory
 cd $GRPC_DIR || { echo "$GRPC_DIR not found"; exit 1; }
 
+echo
+echo "============================================================================================================"
+echo "running $MVN_CMD in $GRPC_DIR"
+echo "============================================================================================================"
+echo
+
 # run maven install
 eval "$MVN_CMD" || { echo "mvn install failed for $GRPC_DIR"; exit 1; }
 
 # change to datastore-service directory
 cd $APP_DIR || { echo "$APP_DIR not found"; exit 1; }
+
+echo
+echo "============================================================================================================"
+echo "running $MVN_CMD in $APP_DIR"
+echo "============================================================================================================"
+echo
 
 # run maven install
 eval "$MVN_CMD" || { echo "mvn install failed for $APP_DIR"; exit 1; }

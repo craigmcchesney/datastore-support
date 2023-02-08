@@ -4,6 +4,13 @@ echo "Stopping datastore ecosystem"
 
 echo
 echo "======================================"
+echo "Stopping javascript server application"
+echo "======================================"
+echo
+~/datastore/datastore-support/bin/javascript-server-app-stop
+
+echo
+echo "======================================"
 echo "Stopping datastore-service java application (query api service)"
 echo "======================================"
 echo

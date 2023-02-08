@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+source ~/datastore/datastore-support/env/datastore-env
+
+WEB_APP_DIR=~/datastore/datastore-javascript/datastore-web-app
+SERVER_APP_DIR=~/datastore/datastore-javascript/datastore-server-app
+INSTALL_CMD="npm install"
+BUILD_CMD="npm run build"
+
+# change to web app directory
+cd $WEB_APP_DIR || { echo "$WEB_APP_DIR not found"; exit 1; }
+
+echo
+echo "============================================================================================================"
+echo "running $INSTALL_CMD in $WEB_APP_DIR"
+echo "============================================================================================================"
+echo
+
+# run npm install
+eval "$INSTALL_CMD" || { echo "$INSTALL_CMD failed for $WEB_APP_DIR"; exit 1; }
+
+echo
+echo "============================================================================================================"
+echo "running $BUILD_CMD in $WEB_APP_DIR"
+echo "============================================================================================================"
+echo
+
+# run npm build
+eval "$BUILD_CMD" || { echo "$BUILD_CMD failed for $WEB_APP_DIR"; exit 1; }
+
+# change to server app directory
+cd $SERVER_APP_DIR || { echo "$SERVER_APP_DIR not found"; exit 1; }
+
+echo
+echo "============================================================================================================"
+echo "running $INSTALL_CMD in $SERVER_APP_DIR"
+echo "============================================================================================================"
+echo
+
+# run npm install
+eval "$INSTALL_CMD" || { echo "$INSTALL_CMD failed for $SERVER_APP_DIR"; exit 1; }
+

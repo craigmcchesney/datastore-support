@@ -30,7 +30,8 @@ if [[ -z $START_WEB_APP ]]; then
     echo
 else
     echo "======================================"
-    echo "TODO: start datastore-app-server (web app)"
+    echo "Starting javascript server application"
     echo "======================================"
     echo
+    ~/datastore/datastore-support/bin/javascript-server-app-start
 fi

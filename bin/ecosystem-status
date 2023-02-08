@@ -13,3 +13,9 @@ echo "datastore java query service status"
 echo "======================================"
 echo
 ~/datastore/datastore-support/bin/datastore-query-svc-status
+
+echo "======================================"
+echo "javascript server application status"
+echo "======================================"
+echo
+~/datastore/datastore-support/bin/javascript-server-app-status

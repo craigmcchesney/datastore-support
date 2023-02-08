@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+LOCKFILE=~/datastore/datastore-deployment/var/lock/javascript-server-app.pid
+
+if [ ! -f "$LOCKFILE" ]; then
+    echo "$LOCKFILE does not exist, don't know process id to kill"
+    exit 1
+fi
+
+# stop service using pid in LOCKFILE
+kill $(cat "$LOCKFILE")
+
+rm "$LOCKFILE"
+
