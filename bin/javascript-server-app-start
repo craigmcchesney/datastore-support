@@ -1,37 +1,21 @@
 #!/usr/bin/env bash
 
+echo
+echo '================================================================'
+echo 'javascript-server-app-start'
+echo '================================================================'
+echo
+
 source ~/datastore/datastore-support/env/datastore-env
 
-LOCKFILE=~/datastore/datastore-deployment/var/lock/javascript-server-app.pid
-LOGFILE=~/datastore/datastore-deployment/var/log/javascript-server-app.log
-SERVER_APP_DIR=~/datastore/datastore-javascript/datastore-server-app
-START_CMD="npm run start >& $LOGFILE & disown"
+SVC_NAME='javascript-server-app'
+APP_DIR=( ~/datastore/datastore-javascript/datastore-server-app )
+APP_CMD='npm run start'
 
-if [ -f "$LOCKFILE" ]; then
-    echo "$LOCKFILE exists, process appears to be running already"
-    PID=`cat $LOCKFILE`
-    ps --pid "$PID" > /dev/null
-    if [ "$?" -eq 0 ]; then
-        echo "service is running with process id: $PID"
-	exit 1
-    else
-	echo "service is not running with process id: $PID, removing $LOCKFILE"
-        rm "$LOCKFILE"
-    fi
-fi
+echo "service name: $SVC_NAME"
+echo "service directory: $APP_DIR"
+echo "service start command: $APP_CMD"
 
-echo
-echo "running: $START_CMD in directory: $SERVER_APP_DIR"
-echo
-
-# change to server app directory
-cd $SERVER_APP_DIR || { echo "$SERVER_APP_DIR not found"; exit 1; }
-
-# start server app
-eval "$START_CMD" || { echo "failed to start service using command: $START_CMD"; exit 1; }
-
-echo $! > "$LOCKFILE" &
-PID=`cat "$LOCKFILE"`
-echo "created $LOCKFILE with process id: $PID"
-echo "logfile: $LOGFILE"
+# surround params in single quotes to encapsulate spaces in values etc
+~/datastore/datastore-support/bin/util-pm-start \'"$SVC_NAME"\' \'"$APP_DIR"\' \'"$APP_CMD"\'
 

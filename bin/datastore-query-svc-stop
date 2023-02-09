@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
 
-LOCKFILE=~/datastore/datastore-deployment/var/lock/datastore-service.pid
+echo
+echo '================================================================'
+echo 'datastore-query-svc-stop'
+echo '================================================================'
+echo
 
-if [ ! -f "$LOCKFILE" ]; then
-    echo "$LOCKFILE does not exist, don't know process id to kill"
-    exit 1
-fi
+source ~/datastore/datastore-support/env/datastore-env
 
-# stop datastore-service using pid in ~/datastore/datastore-deployment/var/lock/datastore-service.pid
-PID=`cat "$LOCKFILE"`
-echo "killing process id: $PID"
-kill $PID || { echo "failed to kill process id: $PID"; exit 1; }
+SVC_NAME='datastore-service'
 
-echo "removing lock file: $LOCKFILE"
-rm "$LOCKFILE" || { echo "failed to remove: $LOCKFILE"; exit 1; }
+echo "service name: $SVC_NAME"
 
+~/datastore/datastore-support/bin/util-pm-stop \'"$SVC_NAME"\'

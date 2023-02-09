@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
-LOCKFILE=~/datastore/datastore-deployment/var/lock/javascript-server-app.pid
+echo
+echo '================================================================'
+echo 'javascript-server-app-stop'
+echo '================================================================'
+echo
 
-if [ ! -f "$LOCKFILE" ]; then
-    echo "$LOCKFILE does not exist, don't know process id to kill"
-    exit 1
-fi
+source ~/datastore/datastore-support/env/datastore-env
 
-# stop service using pid in LOCKFILE
-kill $(cat "$LOCKFILE")
+SVC_NAME='javascript-server-app'
 
-rm "$LOCKFILE"
+echo "service name: $SVC_NAME"
 
+# surround params in single quotes to encapsulate spaces in values etc
+~/datastore/datastore-support/bin/util-pm-stop \'"$SVC_NAME"\'

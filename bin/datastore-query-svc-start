@@ -1,43 +1,30 @@
 #!/usr/bin/env bash
 
+
+echo
+echo '================================================================'
+echo 'datastore-query-svc-start'
+echo '================================================================'
+echo
+
 source ~/datastore/datastore-support/env/datastore-env
 
-LOCKFILE=~/datastore/datastore-deployment/var/lock/datastore-service.pid
-LOGFILE=~/datastore/datastore-deployment/var/log/datastore-service.log
-MVN_BIN=~/datastore/datastore-deployment/bin/mvn
-APP_DIR=~/datastore/datastore-java/datastore-service
-APP_CMD_ARGS="--datastore.server.repository.location=$DATASTORE_SERVER_REPOSITORY_LOCATION --datastore.service.influxdb.token=$DATASTORE_SERVICE_INFLUXDB_TOKEN --spring.data.mongodb.username=$SPRING_DATA_MONGODB_USERNAME --spring.data.mongodb.password=$SPRING_DATA_MONGODB_PASSWORD"
-APP_CMD="$MVN_BIN spring-boot:run -Dspring-boot.run.arguments=\"$APP_CMD_ARGS\" >& $LOGFILE & disown"
+SVC_NAME='datastore-service'
+APP_DIR=( ~/datastore/datastore-java/datastore-service )
+APP_CMD_ARGS='--datastore.server.repository.location=$DATASTORE_SERVER_REPOSITORY_LOCATION --datastore.service.influxdb.token=$DATASTORE_SERVICE_INFLUXDB_TOKEN --spring.data.mongodb.username=$SPRING_DATA_MONGODB_USERNAME --spring.data.mongodb.password=$SPRING_DATA_MONGODB_PASSWORD'
+APP_CMD="mvn spring-boot:run -Dspring-boot.run.arguments=\"$APP_CMD_ARGS\""
+
+echo "svc_name: $SVC_NAME"
+echo "app_dir: $APP_DIR"
+echo "app_cmd_args: $APP_CMD_ARGS"
+echo "app_cmd: $APP_CMD"
 
 # check java home
-test -z $JAVA_HOME && { echo "JAVA_HOME variable is not set"; exit 1; }
+test -z "$JAVA_HOME" && { echo "datasstore-query-svc-start fatal error: JAVA_HOME variable is not set"; exit 1; }
 
 # check maven home
-test -z $M2_HOME && { echo "M2_HOME variable is not set"; exit 1; }
+test -z "$M2_HOME" && { echo "datasstore-query-svc-start fatal error: M2_HOME variable is not set"; exit 1; }
 
-if [ -f "$LOCKFILE" ]; then
-    echo "$LOCKFILE exists, query service appears to be running already"
-    PID=`cat $LOCKFILE`
-    ps --pid "$PID" > /dev/null
-    if [ "$?" -eq 0 ]; then
-        echo "query service is running with process id: $PID"
-	exit 1
-    else
-	echo "query service is not running with process id: $PID, removing $LOCKFILE"
-        rm "$LOCKFILE"
-    fi
-fi
+# surround params in single quotes to encapsulate spaces in values etc
+~/datastore/datastore-support/bin/util-pm-start \'"$SVC_NAME"\' \'"$APP_DIR"\' \'"$APP_CMD"\' || { echo "call to util-pm-start failed"; exit 1; }
 
-echo "starting datastore-service using cmd:"
-echo "$APP_CMD"
-
-# check for link to maven
-test -f $MVN_BIN || { echo "$MVN_BIN not found"; exit 1; }
-
-# change to datastore-service directory
-cd $APP_DIR || { echo "$APP_DIR not found"; exit 1; }
-
-# start datastore-service application (query api service)
-eval "$APP_CMD" || { echo "failed to start datastore-service using command: $APP_CMD"; exit 1; }
-
-echo $! > "$LOCKFILE" &

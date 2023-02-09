@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
+echo
+echo '================================================================'
+echo 'javascript-server-app-status'
+echo '================================================================'
+echo
+
 source ~/datastore/datastore-support/env/datastore-env
 
-LOCKFILE=~/datastore/datastore-deployment/var/lock/javascript-server-app.pid
+SVC_NAME='javascript-server-app'
 
-if [ ! -f "$LOCKFILE" ]; then
-    echo "$LOCKFILE doesn't exist, service doesn't appear to be running"
-    exit 1
-fi
+echo "service name: $SVC_NAME"
 
-ps -p `cat $LOCKFILE` -o pid,vsz=MEMORY -o comm,args=ARGS
+# surround params in single quotes to encapsulate spaces in values etc
+~/datastore/datastore-support/bin/util-pm-status \'"$SVC_NAME"\'

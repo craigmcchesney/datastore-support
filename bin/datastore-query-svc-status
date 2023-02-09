@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
+echo
+echo '================================================================'
+echo 'datastore-query-svc-status'
+echo '================================================================'
+echo
+
 source ~/datastore/datastore-support/env/datastore-env
 
-LOCKFILE=~/datastore/datastore-deployment/var/lock/datastore-service.pid
+SVC_NAME='datastore-service'
 
-if [ ! -f "$LOCKFILE" ]; then
-    echo "$LOCKFILE doesn't exist, query service doesn't appear to be running"
-    exit 1
-fi
+echo "service name: $SVC_NAME"
 
-ps -p `cat $LOCKFILE` -o pid,vsz=MEMORY -o comm,args=ARGS
+~/datastore/datastore-support/bin/util-pm-status \'"$SVC_NAME"\'
+
