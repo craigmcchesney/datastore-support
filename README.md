@@ -90,6 +90,24 @@ The bin directory includes shell scripts for managing individual services, start
 
 The scripts in the bin directory can be grouped into categories for further discussion:
 
+###### managing docker-based support services
+
+These scripts manage the docker containers for the ecosystem support services, InfluxDB, MongoDB, and Envoy proxy.  There are scripts to create and remove the containers, as well as start, stop, and check the status of the containers.  Note that the support-services-rm script not only removes the containers, but also clears the mounted OS directories meaning that all contents of both databases are completely cleared.  Use with caution!  You can use "docker rm" to remove the containers directly but leave the data intact, and support-services-create will create new containers with the existing data.
+
+* support-services-create
+* support-services-rm
+* support-services-start
+* support-services-status
+* support-services-stop
+
+###### process management utilities
+
+I created some simple process management utility scripts to be used for managing the Java and JavaScript applications comprising the ecosystem.  I think eventually I'll move to a tool like [pm2](), but I decided to build something simple to start because I wasn't yet ready to go down that path.  I created scripts for starting and stopping processes, and checking their status.  Each service has a name, directory, and start command.  The scripts create and utilize a "lock file" containing the process id of a running service to know when a service is running, get its status, and stop it.  The start script creates a log file with service output in the standard log directory.
+
+* util-pm-start
+* util-pm-status
+* util-pm-stop
+
 ###### building datastore Java
 
 Builds datastore Java projects using Maven.  Currently includes only [datastore-grpc](https://github.com/osprey-dcs/datastore-grpc) and [datastore-service](https://github.com/osprey-dcs/datastore-service) to support running the query service.
@@ -104,15 +122,19 @@ These scripts are used for starting, stopping, and checking the status of the da
 * datastore-query-svc-status
 * datastore-query-svc-stop
 
-###### managing docker-based support services
+###### building datastore JavaScript
 
-These scripts manage the docker containers for the ecosystem support services, InfluxDB, MongoDB, and Envoy proxy.  There are scripts to create and remove the containers, as well as start, stop, and check the status of the containers.  Note that the support-services-rm script not only removes the containers, but also clears the mounted OS directories meaning that all contents of both databases are completely cleared.  Use with caution!  You can use "docker rm" to remove the containers directly but leave the data intact, and support-services-create will create new containers with the existing data.
+Builds datastore JavaScript projects using "npm".  Runs "npm install" for both the server and web application directories, and creates a production build of the web app directory using "npm run build".
 
-* support-services-create
-* support-services-rm
-* support-services-start
-* support-services-status
-* support-services-stop
+* datastore-java-build
+
+###### managing datastore JavaScript applications
+
+These scripts are used for starting, stopping, and checking the status of the datastore JavaScript applications, [datastore-web-app](https://github.com/craigmcchesney/datastore-web-app) and [datastore-server-app](https://github.com/craigmcchesney/datastore-server-app).
+
+* javascript-server-app-start
+* javascript-server-app-status
+* javascript-server-app-stop
 
 ###### managing ecosystem services
 
