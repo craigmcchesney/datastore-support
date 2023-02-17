@@ -46,7 +46,6 @@ datastore-javascript:
 
 datastore-support:
 ---- bin
----- datastore-file-repository
 ---- docker
 ---- env
 ---- protoc-output
