@@ -1,6 +1,3 @@
-docker/influxdata/*
-docker/mongodata/*
-datastore-file-repository/*
 repos/*
 protoc-output/*
 

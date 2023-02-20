@@ -16,10 +16,10 @@ echo "========== docker container ls -a =========="
 docker container ls -a
 
 echo ""
-echo "========== sudo rm -rf ~/datastore/datastore-support/docker/influxdata/* =========="
-ls ~/datastore/datastore-support/docker/influxdata && sudo rm -rf ~/datastore/datastore-support/docker/influxdata/*
+echo "========== sudo rm -rf ~/datastore/datastore-deployment/var/docker/influxdata/* =========="
+ls ~/datastore/datastore-deployment/var/docker/influxdata && sudo rm -rf ~/datastore/datastore-deployment/var/docker/influxdata/*
 
 echo ""
-echo "========== sudo rm -rf ~/datastore/datastore-support/docker/mongodata/* =========="
-ls ~/datastore/datastore-support/docker/mongodata && sudo rm -rf ~/datastore/datastore-support/docker/mongodata/*
+echo "========== sudo rm -rf ~/datastore/datastore-deployment/var/docker/mongodata/* =========="
+ls ~/datastore/datastore-deployment/var/docker/mongodata && sudo rm -rf ~/datastore/datastore-deployment/var/docker/mongodata/*
 

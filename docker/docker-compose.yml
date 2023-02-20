@@ -16,7 +16,7 @@ services:
       # mapping for the db setup script
       - ./seed:/docker-entrypoint-initdb.d
       # uncomment line below to mount mongodb data to specified host OS directory       
-      - ./mongodata:/data/db
+      - ~/datastore/datastore-deployment/var/docker/mongodata:/data/db
 
   mongo_express:
     image: mongo-express:0.54.0
@@ -38,7 +38,7 @@ services:
   influxdb:
     image: influxdb:latest
     volumes:
-      - ./influxdata:/var/lib/influxdb2:rw
+      - ~/datastore/datastore-deployment/var/docker/influxdata:/var/lib/influxdb2:rw
     ports:
       - 8086:8086
     container_name: datastore-influxdb
