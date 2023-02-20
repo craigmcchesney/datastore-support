@@ -9,7 +9,26 @@ echo "======================================"
 echo
 ~/datastore/datastore-support/bin/support-services-start
 
-if [[ -z $START_DATASTORE_SVC ]]; then
+
+
+if [[ -z $START_DATASTORE_INGESTION_SVC ]]; then
+    echo
+    echo "======================================"
+    echo "Not starting datastore java application (ingestion api service)"
+    echo "======================================"
+    echo
+else
+    echo
+    echo "======================================"
+    echo "Starting datastore java application (ingestion api service)"
+    echo "======================================"
+    echo
+    ~/datastore/datastore-support/bin/datastore-ingestion-svc-start
+fi
+
+
+
+if [[ -z $START_DATASTORE_QUERY_SVC ]]; then
     echo
     echo "======================================"
     echo "Not starting datastore-service java application (query api service)"
@@ -23,6 +42,8 @@ else
     echo
     ~/datastore/datastore-support/bin/datastore-query-svc-start
 fi
+
+
 
 if [[ -z $START_WEB_APP ]]; then
     echo

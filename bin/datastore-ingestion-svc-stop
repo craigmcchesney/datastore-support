@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+echo
+echo '================================================================'
+echo 'datastore-ingestion-svc-stop'
+echo '================================================================'
+echo
+
+source ~/datastore/datastore-support/env/datastore-env
+
+SVC_NAME='datastore'
+
+echo "service name: $SVC_NAME"
+
+~/datastore/datastore-support/bin/util-pm-stop \'"$SVC_NAME"\'

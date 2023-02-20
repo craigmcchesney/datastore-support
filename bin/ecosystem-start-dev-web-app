@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-export START_DATASTORE_SVC=TRUE
+export START_DATASTORE_QUERY_SVC=TRUE
 ~/datastore/datastore-support/bin/ecosystem-start-specified-services

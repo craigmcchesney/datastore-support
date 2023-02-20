@@ -18,6 +18,13 @@ echo
 
 echo
 echo "======================================"
+echo "Stopping datastore java application (ingestion api service)"
+echo "======================================"
+echo
+~/datastore/datastore-support/bin/datastore-ingestion-svc-stop
+
+echo
+echo "======================================"
 echo "Stopping support services"
 echo "======================================"
 echo
