@@ -6,6 +6,7 @@ services:
   mongo_db:
     image: mongo:4.4.16
     container_name: datastore-mongodb
+    user: 1000:1000
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
