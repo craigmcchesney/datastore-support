@@ -44,7 +44,7 @@ services:
       - DOCKER_INFLUXDB_INIT_PASSWORD=datastore
       - DOCKER_INFLUXDB_INIT_ORG=ospreydcs
       - DOCKER_INFLUXDB_INIT_BUCKET=datastore
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN="kBhCr542FKn8mQcL9JhUtqqs8mTdSY7mEydJKhtUvvV938q8zScCxjYiJLKXN8aLlKQZ0Bg3kBBGkKznH2d5Fg=="
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=kBhCr542FKn8mQcL9JhUtqqs8mTdSY7mEydJKhtUvvV938q8zScCxjYiJLKXN8aLlKQZ0Bg3kBBGkKznH2d5Fg==
     volumes:
       - ~/datastore/datastore-deployment/var/docker/influxdata:/var/lib/influxdb2:rw
       - ~/datastore/datastore-deployment/var/docker/influxconfig:/etc/influxdb2:rw
