@@ -5,6 +5,10 @@
 source ~/datastore/datastore-deployment/custom/env/datastore-env-passwd
 source ~/datastore/datastore-deployment/custom/env/datastore-env-vars
 
+# set variables for UID and GID of user that is running datastore ecosystem
+export DATASTORE_UID=$(id -u)
+export DATASTORE_GID=$(id -g)
+
 # add JAVA and MAVEN HOME to PATH
 export PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin
 
