@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# check variables and directories used in docker-compose.yml file
+
+test -z $DATASTORE_UID && { echo "DATASTORE_UID variable is not set"; exit 1; }
+test -z $DATASTORE_GID && { echo "DATASTORE_GID variable is not set"; exit 1; }
+test -f ~/datastore/datastore-support/docker/docker-compose.yml || { echo "~/datastore/datastore-support/docker/docker-compose.yml file not found"; exit 1; }
+test -d ~/datastore/datastore-support/docker/seed || { echo "~/datastore/datastore-support/docker/seed directory not found"; exit 1; }
+test -d ~/datastore/datastore-deployment/var/docker/mongodata || { echo "~/datastore/datastore-deployment/var/docker/mongodata directory not found"; exit 1; }
+test -d ~/datastore/datastore-deployment/var/docker/influxdata || { echo "~/datastore/datastore-deployment/var/docker/influxdata directory not found"; exit 1; }
+test -d ~/datastore/datastore-deployment/var/docker/influxconfig || { echo "~/datastore/datastore-deployment/var/docker/influxconfig directory not found"; exit 1; }
+
 docker compose -f ~/datastore/datastore-support/docker/docker-compose.yml create
 
 if [[ $OSTYPE == 'darwin'* ]]; then
