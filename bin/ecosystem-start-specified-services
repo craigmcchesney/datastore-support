@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ~/datastore/datastore-support/env/datastore-env
+
 echo "Starting datastore ecosystem"
 
 echo
