@@ -57,7 +57,7 @@ Branch of [datastore-deployment repo](https://github.com/craigmcchesney/datastor
 
 * bin: symbolic links to system executables with variable locations on hosts
 * custom: customizations including environment variables and cron file etc
-* var: ignored by version control, includes subdirectories for lock and log files
+* var: ignored by version control, includes subdirectories for lock and log files, docker data volume mounts, and the file repo for the Java server applications
 
 #### datastore-java
 
@@ -115,8 +115,11 @@ Builds datastore Java projects using Maven.  Currently includes only [datastore-
 
 ###### managing datastore Java applications
 
-These scripts are used for starting, stopping, and checking the status of the datastore Java query service, [datastore-service](https://github.com/osprey-dcs/datastore-service).
+These scripts are used for starting, stopping, and checking the status of the datastore Java [ingestion](https://github.com/osprey-dcs/datastore) and [query](https://github.com/osprey-dcs/datastore-service) services.
 
+* datastore-ingestion-svc-start
+* datastore-ingestion-svc-status
+* datastore-ingestion-svc-stop
 * datastore-query-svc-start
 * datastore-query-svc-status
 * datastore-query-svc-stop
@@ -161,8 +164,6 @@ The docker directory includes configuration files for creating [docker container
 A separate docker configuration (envoy.yaml)  is included for creating a container running the envoy proxy.  Note that there is now a MacOS specified file envoy.mac.yaml (that I think is also supposed to be used for Windows).  See the [grpc-web example](https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld) for more details about docker container configuration and creation and the differences for Mac/Windows.
 
 The "seed" subdirectory is used when creating the mongodb container to create.  It contains mongo shell scripts to create and initialize the "datastore" user in the database.
-
-This directory also includes OS directories mounted to the InfluxDB and MongodB containers for accessing database files (influxdata and mongodata).  It should really be moved to the datastore-deployment/var directory since it is variable deployment-specific content.
 
 ##### env
 
