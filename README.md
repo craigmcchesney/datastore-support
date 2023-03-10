@@ -201,15 +201,21 @@ If it is desired to use the web application and node corresponding node server, 
 
 The ~/datastore/datastore-support/bin/support-services-create script is used to create docker containers for influxdb, mongodb, and envoy proxy.
 
-### use influxdb portal to create "bucket"
+### check influxdb installation using web portal
 
-After creating docker containers for the support services, the InfluxDB [web portal running in the docker container](http://localhost:8086/) is used to initialize the "bucket" for the datastore applications (user/bucket name "datastore", organization "ospreydcs").
-
-NOTE: it is on the todo list to create the docker container for InfluxDB using config file values for user, bucket, and organization name etc but for now it works the other way around.
+The [influx web portal](http://localhost:8086) can be used to check that the influxdb database was properly initialized with the "datastore" bucket, user, organization, and api token.  These parameters are specified when creating/starting the docker container for influxdb so you should not be prompted to initialize the default bucket when accessing the web portal.
 
 ### check mongodb installation using mongoexpress
 
 The [mongo express web portal](http://localhost:8081/) can be used to navigate the MongoDB running in the docker container.  The initial database contains no schema as you'd expect to see in a relational database platform.  The ingestion services initializes the database structure and builds on it as data are added.
+
+### build java applications
+
+Use the ~/datastore/datastore-support/bin/datastore-java-build script to build and install the datastore java ingestion and query applications.
+
+### build javascript applications
+
+Use the ~/datastore/datastore-support/bin/javascript-build script to build and install the datastore javascript server and web applications.
 
 ### use appropriate ecosystem-start variant to bring up the system
 
