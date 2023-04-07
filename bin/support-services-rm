@@ -16,6 +16,10 @@ echo "========== docker container ls -a =========="
 docker container ls -a
 
 echo ""
+echo "========== sudo rm -rf ~/datastore/datastore-deployment/var/docker/influxconfig/* =========="
+ls ~/datastore/datastore-deployment/var/docker/influxconfig && sudo rm -rf ~/datastore/datastore-deployment/var/docker/influxconfig/*
+
+echo ""
 echo "========== sudo rm -rf ~/datastore/datastore-deployment/var/docker/influxdata/* =========="
 ls ~/datastore/datastore-deployment/var/docker/influxdata && sudo rm -rf ~/datastore/datastore-deployment/var/docker/influxdata/*
 
